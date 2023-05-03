@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+	<script src="js/jquery-2.1.0.min.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script>
+		$(function () {
+			$("#login_ok_btn").bind("click", function () {
+				var jsonData = {};
+				jsonData["username"] = $("#username").val();
+				jsonData["password"] = $("#password").val();
+				console.log($("#username").val());
+				console.log($("#password").val());
+				console.log(jsonData);
+				// console.log(JSON.stringify(jsonData));
+				$.ajax({
+					type: "POST",
+					url: "ultra_api.php",
+					data: JSON.stringify(jsonData),
+					dataType: "json",
+					success: showdata,
+					error: function () {
+						alert("error-ultra_api.php");
+					}
+				});
+			});
+		});
+		function showdata(data) {
+			console.log(data);
+			if (data.state) {
+				alert(data.message);
+				setCookie("UID_1", data.UID_1, 7);
+				setCookie("UID_2", data.UID_2, 7);
+				location.href = "member_control_panel.html";
+			} else {
+				alert(data.message);
+			}
+		}
+		setCookie
+		function setCookie(cname, cvalue, exdays) {
+			const d = new Date();
+			d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+			let expires = "expires=" + d.toUTCString();
+			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
+		$("#cancel").css("background-color", "blue");
+	</script>
+	<style>
+		#cancel {
+			color: #ffffff;
+			background: #adf9f1;
+			text-shadow: 0em 0.1em 0.1em rgb(9, 5, 5);
+			margin-top: 0;
+			margin-bottom: 0;
+			margin-right: auto;
+			margin-left: auto;
+			overflow: hidden;
+		}
+
+		#login_ok_btn {
+			color: #ffffff;
+			background: #adf9f1;
+			;
+			text-shadow: 0em 0.1em 0.1em rgb(9, 5, 5);
+			margin-top: 0;
+			margin-bottom: 0;
+			margin-right: auto;
+			margin-left: auto;
+			overflow: hidden;
+		}
+
+		@font-face {
+			font-family: 'inter';
+			src: url('Fonts/Makinas-4-Square.otf') format("opentype");
+
+		}
+
+		.ui-header .ui-title {
+			color: rgb(255, 255, 255);
+			font-size: 1.9em;
+			font-family: inter;
+			text-shadow: 0em 0.05em 0.1em rgb(9, 5, 5);
+			text-shadow: 1px 1px 2px black,
+				1px -1px 2px rgb(0, 0, 0),
+				-1px 1px 2px rgb(0, 0, 0),
+				-1px -1px 2px rgb(0, 0, 0);
+
+
+
+		}
+
+		.ui-footer .ui-title {
+			font-size: 1.9em;
+			font-family: inter;
+			color: rgb(255, 255, 255);
+			text-shadow: 0em 0.05em 0.1em rgb(9, 5, 5);
+			font-weight: bold;
+			text-shadow: 1px 1px 2px black,
+				1px -1px 2px rgb(0, 0, 0),
+				-1px 1px 2px rgb(0, 0, 0),
+				-1px -1px 2px rgb(0, 0, 0);
+		}
+
+		.ui-page .ui-header {
+			background: #adf9f1;
+			border-color: rgb(255, 255, 255);
+			border-width: 0.2em;
+
+		}
+
+		.ui-page .ui-footer {
+			background: #adf9f1;
+			border-color: rgb(255, 255, 255);
+			border-width: 0.2em;
+
+		}
+
+		.ui-page {
+			background: #e0f7f7;
+		}
+
+		.ui-field-contain label {
+			font-family: inter;
+			font-size: 1.5em;
+			overflow: hidden;
+
+		}
+
+		.ui-field-contain input {
+			margin-top: 10px;
+			margin-bottom: 10px;
+			overflow: hidden;
+
+		}
+
+		.ui-grid-a a {
+			font-size: 1.5em;
+			font-family: inter;
+			border-style: ridge;
+			border-width: 2px;
+			width: 50%;
+			height: 20px;
+
+			display: block;
+
+		}
+	</style>
+</head>
+
+<body>
+	<div data-role="page" id="home">
+		<div data-role="header">
+			<h1>登入頁面 </h1>
+			<a  class=" ui-btn-right" style ="color:green;" href="http://raysite.tech/member_system/member_C.html" data-role="button" >註冊</a>
+		</div>
+	
+				
+			
+		<div data-role="main" class="ui-content">
+			<div data-role="fieldcontain">
+				<label for="username">帳號/Account</label>
+				<input type="text" name="username" id="username">
+			</div>
+			<div data-role="fieldcontain">
+				<label for="password">密碼/Password</label>
+				<input type="password" name="password" id="password">
+			</div>
+
+		</div>
+
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<a href="" class="my-btn" data-role="button" data-icon="delete" id="cancel">取消</a>
+			</div>
+			<div class="ui-block-b">
+				<a href="" data-role="button" data-icon="check" id="login_ok_btn">登入</a>
+			</div>
+
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<h1>Sign In</h1>
+		</div>
+	</div>
+</body>
+
+</html>
