@@ -32,6 +32,12 @@
 			$("#cancel").bind("click", function () {
 			    location.href = "member_login.html";
 			});
+
+			$("#refToRegisterPage").bind("click", function () {
+			    location.href = "member_C.html";
+			});
+
+			
 			
 		});
 		function showdata(data) {
@@ -160,7 +166,7 @@
 	<div data-role="page" id="home">
 		<div data-role="header">
 			<h1>登入頁面 </h1>
-			<a  class=" ui-btn-right" style ="color:green;" href="https://alltheworkdone.000webhostapp.com/member_system/member_C.html" data-role="button" >註冊</a>
+			<a  class=" ui-btn-right" style ="color:green;"  data-role="button" id="refToRegisterPage" >註冊</a>
 		</div>
 	
 				
@@ -179,10 +185,10 @@
 
 		<div class="ui-grid-a">
 			<div class="ui-block-a">
-				<a href="" class="my-btn" data-role="button" data-icon="delete" id="cancel"  >取消</a>
+				<a  class="my-btn" data-role="button" data-icon="delete" id="cancel"  >取消</a>
 			</div>
 			<div class="ui-block-b">
-				<a href="" data-role="button" data-icon="check" id="login_ok_btn">登入</a>
+				<a class="my-btn" data-role="button" data-icon="check" id="login_ok_btn">登入</a>
 			</div>
 
 		</div>

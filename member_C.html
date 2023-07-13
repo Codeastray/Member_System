@@ -242,6 +242,10 @@
 					alert("欄位錯誤！");
 				}
 			});
+			
+			$("#cancel").bind("click", function () {
+				location.href = "member_login.html";
+			});
 		});
 
 		function showdata(data) {
@@ -347,10 +351,10 @@
 			</div>
 			<div class="ui-grid-a">
 				<div class="ui-block-a">
-					<a href="https://alltheworkdone.000webhostapp.com/member_system/member_login.html" data-role="button" data-theme="b" data-icon="delete" id="cancel">取消</a>
+					<a data-role="button" data-theme="b" data-icon="delete" id="cancel">取消</a>
 				</div>
 				<div class="ui-block-b">
-					<a href="" data-role="button" data-theme="b" data-icon="check" id="reg_ok_btn">申請帳號</a>
+					<a  data-role="button" data-theme="b" data-icon="check" id="reg_ok_btn">申請帳號</a>
 				</div>
 			</div>
 		</div>
