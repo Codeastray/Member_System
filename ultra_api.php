@@ -21,7 +21,7 @@ if(isset($mydata["username"]) && isset($mydata["password"]) && isset($mydata["em
 		// $servername = "localhost";
 		// $username = "owner";
 		// $password = "1234567";
-		// $dbname = "u933610124_U9H3X";
+		// $dbname = "id21028457_alltheworkdonedb";
 
 		// $conn = mysqli_connect($servername, $username, $passward, $dbname);
 		// if(!$conn) {
@@ -38,7 +38,7 @@ if(isset($mydata["username"]) && isset($mydata["password"]) && isset($mydata["em
 
 		$sql = "INSERT INTO user(Username,Password,Email,Department,Seniority,Hobby,Area)VALUES ('$c_username','$c_password','$c_email','$c_department','$c_seniority','$c_hobby','$c_area')";
 
-		if (execute_sql($conn,"u933610124_U9H3X",$sql)){
+		if (execute_sql($conn,"id21028457_alltheworkdonedb",$sql)){
 			echo '{"state" : true, "message" : "註冊成功!" }';
 		}else{
 			echo '{"state" : false, "message" : "註冊失敗!:'.mysqli_error($conn).$sql.' "}';
@@ -60,13 +60,13 @@ if(isset($mydata["username"]) && isset($mydata["password"]) && isset($mydata["em
         require_once("dbtool.php");
         $conn = create_connect();
         $sql = " SELECT Username, Password FROM user WHERE Username = '$check_username' AND Password ='$check_password' ";
-        $result =execute_sql($conn,"u933610124_U9H3X",$sql);
+        $result =execute_sql($conn,"id21028457_alltheworkdonedb",$sql);
 
         if(mysqli_num_rows($result) == 1){
             $UID_1 = substr(sha1(md5(uniqid(date("l jS \of F Y h:i:s A")))),5,7 );
             $UID_2 = substr(sha1(md5(uniqid(date("l jS \of F Y h:i:s A")))),5,7 );
             $sql = " UPDATE user SET UID_1 ='$UID_1',UID_2 ='$UID_2'  WHERE Username = '$check_username'";
-            $result = execute_sql($conn,"u933610124_U9H3X",$sql);
+            $result = execute_sql($conn,"id21028457_alltheworkdonedb",$sql);
             if($result){
                 echo '{"state" : true, "message" : "登入成功!", "UID_1" : "'.$UID_1.'" ,"UID_2" : "'.$UID_2.'"  }';
             }else{
@@ -87,7 +87,7 @@ if(isset($mydata["username"]) && isset($mydata["password"]) && isset($mydata["em
         require_once("dbtool.php");
         $conn = create_connect();
         $sql = "SELECT Username,Email,Department,UID_1,UID_2,Level,Seniority FROM user WHERE UID_1 = '$C_UID_1' AND UID_2 = '$C_UID_2' ";
-        $result = execute_sql($conn, "u933610124_U9H3X", $sql);
+        $result = execute_sql($conn, "id21028457_alltheworkdonedb", $sql);
 
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
@@ -125,7 +125,7 @@ if(isset($mydata["username"]) && isset($mydata["password"]) && isset($mydata["em
 
         $sql = "UPDATE user SET Email = '$c_email',Department = '$c_department',Seniority = '$c_seniority',Hobby = '$c_hobby',Area = '$c_area',Level = '$c_level' WHERE ID ='$u_id'";
 
-        if (execute_sql($conn,"u933610124_U9H3X",$sql)) {
+        if (execute_sql($conn,"id21028457_alltheworkdonedb",$sql)) {
             if(mysqli_affected_rows($conn)==1){
                 echo'{"state": true, "message":"更新成功!"}';
             }else{
@@ -152,7 +152,7 @@ if(isset($mydata["username"]) && isset($mydata["password"]) && isset($mydata["em
 
          
 
-      if (execute_sql($conn,"u933610124_U9H3X",$sql)) {
+      if (execute_sql($conn,"id21028457_alltheworkdonedb",$sql)) {
           if(mysqli_affected_rows($conn)==1){
             echo'{"state": true, "message":"刪除成功!"}';
           }else{
@@ -176,7 +176,7 @@ if(isset($mydata["username"]) && isset($mydata["password"]) && isset($mydata["em
         $conn = create_connect();
 
         $sql = "SELECT Username FROM user WHERE Username = '$check_username'";
-        $result =execute_sql($conn,"u933610124_U9H3X",$sql);
+        $result =execute_sql($conn,"id21028457_alltheworkdonedb",$sql);
 
         if(mysqli_num_rows($result) == 1){
             echo '{"state" : false, "message" : "帳號存在，不可以使用" }';
@@ -200,7 +200,7 @@ if(isset($mydata["username"]) && isset($mydata["password"]) && isset($mydata["em
     $conn = create_connect();
 
 	$sql = "SELECT ID,Username,Email,Department,Seniority,Hobby,Area,Level,Created_at FROM user ORDER BY ID DESC";
-	$result =execute_sql($conn,"u933610124_U9H3X",$sql);
+	$result =execute_sql($conn,"id21028457_alltheworkdonedb",$sql);
 	if(mysqli_num_rows($result) > 0){
 	   $mydata = array();
 	   while($row = mysqli_fetch_assoc($result)){
